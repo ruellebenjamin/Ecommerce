@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal min-h-screen flex flex-col">
+
+    <!-- Main wrapper -->
+    <div class="flex-grow">
+
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-lg font-bold text-gray-800">
+                    <a href="/" class="hover:text-blue-500">My E-Commerce</a>
+                </div>
+                <nav class="space-x-6 text-gray-600">
+                    <a href="/about" class="hover:text-blue-500">About</a>
+                    <a href="/contact" class="hover:text-blue-500">Contact</a>
+                    {% if app.user %}
+                        <a href="/cart" class="hover:text-blue-500">Cart</a>
+                    {% else %}
+                        <a href="/login">Se connecter</a>
+                    {% endif %}
+                    <a href="/login" class="hover:text-blue-500">
+                        <img src="images/logoConnexion.png" alt="Login" class="inline-block">
+                    </a>
+                </nav>
+
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="container mx-auto px-6 py-8">
+            {% block body %}{% endblock %}
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12 py-6 border-t">
+        <div class="container mx-auto text-center text-gray-600">
+            <p>&copy; 2024 My E-Commerce. All rights reserved.</p>
+            <nav class="space-x-4">
+                <a href="/terms" class="hover:text-blue-500">Terms of Service</a>
+                <a href="/privacy" class="hover:text-blue-500">Privacy Policy</a>
+                <a href="/faq" class="hover:text-blue-500">FAQ</a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+
 </html>

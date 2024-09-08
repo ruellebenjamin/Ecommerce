@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ColorController!{% endblock %}
+
+{% block body %}
+{% for color in colors %}
+<div>
+    <p>{{ color.name }}</p>
+    <p>{{ color.color }}</p>
+</div>    
+{% endfor %}
+{% endblock %}

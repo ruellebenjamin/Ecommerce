@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer un nouveau produit</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.imageFile) }}
+    {{ form_row(form.price) }}
+    <button class="btn btn-success">Créer</button>
+    {{ form_end(form) }}
+{% endblock %}
