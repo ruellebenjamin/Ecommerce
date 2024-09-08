@@ -20,6 +20,12 @@ class ProductsController extends AbstractController
     #[Route('/product/create', name: 'app_products_create')]
     public function create(Request $request, EntityManagerInterface $manager)
     {
+        $user = $this->getUser();
+        if (!$user || !in_array('ROLE_ADMIN', $user->getRoles())) {
+            return $this->redirectToRoute('app_home');
+        }
+
+
         $product = new Products(); // Initialiser l'entité
 
         $form = $this->createForm(ProductType::class, $product);
