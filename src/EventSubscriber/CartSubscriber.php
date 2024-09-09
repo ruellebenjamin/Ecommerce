@@ -30,10 +30,21 @@ class CartSubscriber implements EventSubscriberInterface
 
     public function onKernelController(ControllerEvent $event)
     {
-        $cart = ($this->security->getUser())->getCart();
+        $user = $this->security->getUser();
+
+        if (!$user) {
+            $this->twig->addGlobal('count', 0);
+            return;
+        }
+        $cart = $user->getCart();
+
+        if (!$cart) {
+            $this->twig->addGlobal('count', 0);
+            return;
+        }
+
         $count = $this->cartRepository->getCartNumber($cart);
         $this->twig->addGlobal('count', $count);
-
     }
 
     public static function getSubscribedEvents()
