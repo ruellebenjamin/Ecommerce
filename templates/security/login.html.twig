@@ -42,8 +42,8 @@
                     <section class="w-[300px] md:w-1/2 border bg-gray-50">
                         <div class="w-[300px] mx-auto space-y-6 p-6">
                             <div class="text-[#002B2F] text-center w-full">
-                                <a href="/" class="inline-block h-[40px]">
-                                    <!-- Logo if necessary -->
+                                <a href="/" >
+                                    <img class="h-40px" src="/images/logo.png" alt="">
                                 </a>
                             </div>
 
@@ -67,7 +67,7 @@
 
                             <!-- Début du formulaire -->
                             <form action="{{ path('app_login') }}" method="post">
-                                
+
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                                 <!-- Email -->
