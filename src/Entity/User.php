@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $verification_code = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $imageName = null;
+
     /**
      * @param bool|null $is_verified
      */
@@ -162,6 +165,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerificationCode(int $verification_code): static
     {
         $this->verification_code = $verification_code;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(string $imageName): static
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }

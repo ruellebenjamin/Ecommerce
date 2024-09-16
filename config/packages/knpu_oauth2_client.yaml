@@ -1,0 +1,14 @@
+knpu_oauth2_client:
+    clients:
+        google_main:
+            type: google
+            client_id: '%env(OAUTH_GOOGLE_CLIENT_ID)%'
+            client_secret: '%env(OAUTH_GOOGLE_SECRET)%'
+            redirect_route: connect_google_check
+            use_oidc_mode: true  # Active les scopes openid, email, profile
+            use_state: true
+            access_type: offline  # Si tu veux obtenir un refresh token
+
+
+
+        # configure your clients as described here: https://github.com/knpuniversity/oauth2-client-bundle#configuration

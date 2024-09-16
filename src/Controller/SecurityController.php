@@ -65,6 +65,7 @@ class SecurityController extends AbstractController
             $code = random_int(100000, 999999);
 
             $user->setVerificationCode($code);
+            $user->setImageName('default.png');
 
 
             $manager->persist($user);
