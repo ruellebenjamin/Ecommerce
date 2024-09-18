@@ -57,4 +57,31 @@ class ProductsController extends AbstractController
             ]);
     }
 
+    #[Route('/product/{id}/edit', name: 'app_products_edit')]
+public function edit(Products $products,Request $request, SluggerInterface $slugger, EntityManagerInterface $manager)
+    {
+        $user = $this->getUser();
+        if (!$user || !in_array('ROLE_ADMIN', $user->getRoles())) {
+            return $this->redirectToRoute('app_home');
+        }
+
+        $form = $this->createForm(ProductType::class, $products);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($products);
+            $manager->flush();
+
+            $this->addFlash('success','Votre produit à bien été modifié ! ');
+
+            return $this->redirectToRoute('app_home');
+
+        }
+        return $this->render('products/edit.html.twig', [
+            'form' => $form->createView(),
+            'product' => $products,
+        ]);
+    }
+
 }
